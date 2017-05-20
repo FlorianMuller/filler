@@ -1,0 +1,67 @@
+1. Se rapprocher
+2. Encercler
+3. Finir de tout completer
+
+= = = =
+I - Se rapprocher:
+
+. ft_se_rapprocher():
+	Tant que: On a pas tt testé
+		Si pos valide:
+			dist = ft_dist_adv(pos)
+		Si dist < best_dist
+			best_pos = pos
+		pos++
+	ret (pos)
+
+. ft_dist_adv(pos):
+	Tant que: On a pas tt testé
+		Si pion Adv:
+			dist = ft_dist(posAdv, pos)
+		Si dist < best_dist
+			best_dist = dist
+	ret (best_dist);
+
+. ft_dist(A, B);
+	ret(sqrt(|xA - xB|^2 + |yB - yA|^2));
+
+= = = =
+
+II - Encercler
+
+. ft_encercler:
+	Tant que: On a pas tt testé
+		Si pos valide:
+			cont= ft_contacte(pos)
+		Si cont > best_cont
+			best_cont = cont
+	ret (cont)
+
+= = = =
+
+III - Finir
+
+. ft_finish:
+	Tant que: On a pas tt testé
+		Si pos valide:
+			ret (pos)
+
+
+===================
+   0 1 2 3 4 -> (X)
+ 0 A . . . .
+ 1 . . . . .
+ 2 . . . C .
+ 3 . B . . .
+ 4 . . . . .
+ |
+ v
+(Y)
+
+
+
+A(0,0)
+B(1,3)
+C(3,2)
+
+AB 	= sqrt(|xA - xB|^2 + |yB - yA|^2)

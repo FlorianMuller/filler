@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:15 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 00:38:33 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/20 16:07:29 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,19 @@ void	ft_init_map(t_env *env)
 		y++;
 	}
 
-	int n = 0;
-	ft_printf_fd(fd, "Map:\n");
-	while (env->map[n])
-	{
-		ft_printf_fd(fd, "%s\n", env->map[n]);
-		n++;
-	}
+	// int n = 0;
+	// ft_printf_fd(fd, "Map:\n");
+	// while (env->map[n])
+	// {
+	// 	ft_printf_fd(fd, "%s\n", env->map[n]);
+	// 	n++;
+	// }
 }
 
 int main()
 {
 	t_env	env;
 	t_point	pos;
-	// char	*s = NULL;
 
 	fd = open("log.txt", O_RDWR);
 	ft_get_mytoken(&env);
@@ -63,12 +62,12 @@ int main()
 	{
 		ft_get_tokensize(&env);
 		ft_get_token(&env);
-				
+		ft_resize_token(&env);
 		pos = ft_find_pos(env);
 		ft_tabc_del(&(env.token));
-		if (pos.y == 15)
+		if (pos.y >= env.mapsize.y || pos.y < 0)
 			break;
-		ft_printf("%d %d\n", pos.y, pos.x);
+		ft_printf("%d %d\n", pos.y - env.tokendiff.y, pos.x - env.tokendiff.x);
 		ft_printf_fd(fd, "====\n");
 		ft_get_map(&env);
 	}

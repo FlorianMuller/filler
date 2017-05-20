@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:49:08 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 03:37:36 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/20 16:09:44 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,39 +35,23 @@ int		ft_check_pos(t_env env, t_point pos)
 	ft_set_point(&p, 0, 0);
 	while (env.token[p.y])
 	{
-		if (pos.y + p.y >= env.mapsize.y && ft_strchr(env.token[p.y], '*'))
+		if (pos.y + p.y >= env.mapsize.y)
 			return (0);
-		while (env.token[p.y][p.x++])
+		while (env.token[p.y][p.x])
 		{
-			if (env.token[p.y][p.x - 1] != '*')
-				continue;
-			if (pos.x + p.x - 1 >= env.mapsize.x
-				|| (ft_is_adv(env.map[pos.y + p.y][pos.x + p.x - 1], env.mytoken)
-					&& env.token[p.y][p.x - 1] == '*'))
+			if (pos.x + p.x >= env.mapsize.x
+				|| (ft_is_adv(env.map[pos.y + p.y][pos.x + p.x], env.mytoken)
+					&& env.token[p.y][p.x] == '*'))
 				return (0);
-		 	cross += (env.map[pos.y + p.y][pos.x + p.x - 1] == env.mytoken) ? 1: 0;
+			if (env.token[p.y][p.x] == '*'
+				&& env.map[pos.y + p.y][pos.x + p.x] == env.mytoken)
+		 		cross ++;
+		 	p.x++;
 		}
 		ft_set_point(&p, 0, p.y + 1);
 	}
 	return ((cross == 1) ? 1 : 0);
 }
-
-// if (pos.y + p.y >= env.mapsize.y && ft_strchr(env.token[p.y], '*'))
-// 	return (0);
-// else if (ft_strchr(env.token[p.y], '*'))
-// 	while (env.token[p.y][p.x])
-// 	{
-// 		if ((pos.x + p.x >= env.mapsize.x && env.token[p.y][p.x] == env.mytoken)
-// 			|| (ft_is_adv(env.map[pos.y + p.y][pos.x + p.x], env.mytoken)
-// 				&& env.token[p.y][p.x] == '*'))
-// 			return (0);
-// 		else if (env.token[p.y][p.x] == env.mytoken)
-// 			if (env.map[pos.y + p.y][pos.x + p.x] == env.mytoken && env.token[p.y][p.x] == '*')
-// 		 		cross++;
-// 		p.x++;
-// 	}
-// p.x = 0;
-// p.y++;
 
 void	ft_point_plus(t_point *pos, int x_max)
 {
@@ -100,9 +84,9 @@ t_point	ft_find_pos(t_env env)
 		ft_set_point(&pos, env.mapsize.x - 1, env.mapsize.y - 1);
 	else
 		ft_set_point(&pos, 0, 0);
-	while (!ft_check_pos(env, pos) && pos.y != env.mapsize.y && pos.y != env.mapsize.y && pos.y >= 0)
+	while (pos.y != env.mapsize.y && pos.y >= 0 && !ft_check_pos(env, pos))
 	{
-		ft_printf_fd(fd, "pos.x: %d | pos.y: %d\n", pos.x, pos.y);
+		// ft_printf_fd(fd, "pos.x: %d | pos.y: %d\n", pos.x, pos.y);
 		if (env.mytoken == 'O')
 			ft_point_minus(&pos, env.mapsize.x - 1);
 		else

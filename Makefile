@@ -6,7 +6,7 @@
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 16:25:16 by fmuller           #+#    #+#              #
-#    Updated: 2017/05/19 23:14:55 by fmuller          ###   ########.fr        #
+#    Updated: 2017/05/20 15:42:36 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ export CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L$(LIBDIR) -l$(LIBNAME)
 NAME = fmuller.filler
-SRC =  main.c get_all.c find_pos.c
+SRC =  main.c get_all.c resize_token.c find_pos.c
 OBJ = $(SRC:.c=.o)
 
 # LIBFT

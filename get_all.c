@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 20:07:47 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/18 18:26:48 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/20 16:06:14 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_get_mytoken(t_env *env)
 		env->mytoken = 'X';
 	ft_strdel(&s);
 	
-	ft_printf_fd(fd, "mytoken: %c\n", env->mytoken);
+	// ft_printf_fd(fd, "mytoken: %c\n", env->mytoken);
 }
 
 void	ft_get_mapsize(t_env *env)
@@ -35,8 +35,8 @@ void	ft_get_mapsize(t_env *env)
 	env->mapsize.x = ft_atoi(s + 11);
 	ft_strdel(&s);
 	
-	ft_printf_fd(fd, "mapsize.y: %d\n", env->mapsize.y);
-	ft_printf_fd(fd, "mapsize.x: %d\n", env->mapsize.x);
+	// ft_printf_fd(fd, "mapsize.y: %d\n", env->mapsize.y);
+	// ft_printf_fd(fd, "mapsize.x: %d\n", env->mapsize.x);
 }
 
 void	ft_get_map(t_env *env)
@@ -54,13 +54,13 @@ void	ft_get_map(t_env *env)
 		y++;
 	}
 
-	int n = 0;
-	ft_printf_fd(fd, "Map:\n");
-	while (env->map[n])
-	{
-		ft_printf_fd(fd, "%s\n", env->map[n]);
-		n++;
-	}
+	// int n = 0;
+	// ft_printf_fd(fd, "Map:\n");
+	// while (env->map[n])
+	// {
+	// 	ft_printf_fd(fd, "%s\n", env->map[n]);
+	// 	n++;
+	// }
 }
 
 void	ft_get_tokensize(t_env *env)
@@ -72,8 +72,8 @@ void	ft_get_tokensize(t_env *env)
 	env->tokensize.x = ft_atoi(s + 8);
 	ft_strdel(&s);
 	
-	ft_printf_fd(fd, "tokensize.y: %d\n", env->tokensize.y);
-	ft_printf_fd(fd, "tokensize.x: %d\n", env->tokensize.x);	
+	// ft_printf_fd(fd, "tokensize.y: %d\n", env->tokensize.y);
+	// ft_printf_fd(fd, "tokensize.x: %d\n", env->tokensize.x);
 }
 
 void	ft_get_token(t_env *env)
