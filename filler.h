@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:44 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 15:33:56 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/22 18:31:25 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			ft_passnline(size_t n);
 void			ft_set_point(t_point *p, int x, int y);
 void			ft_point_plus(t_point *pos, int x_max);
 void			ft_point_minus(t_point *pos, int x_max);
+int				ft_is_adv(char c, char mytoken);
+
 
 void			ft_get_mytoken(t_env *env);
 void			ft_get_mapsize(t_env *env);
@@ -49,5 +51,9 @@ void			ft_get_token(t_env *env);
 void			ft_resize_token(t_env *env);
 
 t_point			ft_find_pos(t_env env);
+int				ft_check_pos(t_env env, t_point pos);
+
+t_point			ft_get_closer(t_env env);
+int				ft_dist_to_adv(t_env env, t_point mypos);
 
 #endif

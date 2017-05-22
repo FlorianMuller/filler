@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 20:07:47 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 16:06:14 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:43:01 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	ft_get_token(t_env *env)
 		y++;
 	}
 
-	int n = 0;
-	ft_printf_fd(fd, "Token:\n");
-	while (env->token[n])
-	{
-		ft_printf_fd(fd, "%s\n", env->token[n]);
-		n++;
-	}
+	// int n = 0;
+	// ft_printf_fd(fd, "Token:\n");
+	// while (env->token[n])
+	// {
+	// 	ft_printf_fd(fd, "%s\n", env->token[n]);
+	// 	n++;
+	// }
 }
 
 // $$$ exec p1 : [./fmuller.filler

@@ -6,7 +6,7 @@
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 16:25:16 by fmuller           #+#    #+#              #
-#    Updated: 2017/05/20 15:42:36 by fmuller          ###   ########.fr        #
+#    Updated: 2017/05/22 18:25:32 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ export CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L$(LIBDIR) -l$(LIBNAME)
 NAME = fmuller.filler
-SRC =  main.c get_all.c resize_token.c find_pos.c
+SRC =  main.c get_all.c resize_token.c find_pos.c get_closer.c
 OBJ = $(SRC:.c=.o)
 
 # LIBFT
@@ -37,7 +37,7 @@ ft_printf/ft_printf.c ft_printf/color.c ft_printf/color_init.c ft_printf/color_r
 ft_printf/param.c ft_printf/output.c ft_printf/init_all.c ft_printf/is_something.c ft_printf/read.c \
 ft_printf/read_params.c ft_printf/read_params2.c ft_printf/write_string.c ft_printf/write_char.c \
 ft_printf/write_nbr.c ft_printf/write_other.c ft_printf/write_all.c ft_printf/write_all2.c \
-ft_printf/ft_printf_fd.c
+ft_printf/ft_printf_fd.c ft_sqrt.c ft_abs_val.c ft_power.c
 LIBFT_SRC = $(addprefix $(LIBDIR)/,$(LIBFT_SRC_NAME))
 
 all: $(NAME)

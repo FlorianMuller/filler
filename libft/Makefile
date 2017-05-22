@@ -6,7 +6,7 @@
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 17:11:29 by fmuller           #+#    #+#              #
-#    Updated: 2017/05/17 18:54:43 by fmuller          ###   ########.fr        #
+#    Updated: 2017/05/22 18:25:04 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ EXEC = a
 # ft_printf/param.c ft_printf/output.c ft_printf/init_all.c ft_printf/is_something.c ft_printf/read.c \
 # ft_printf/read_params.c ft_printf/read_params2.c ft_printf/write_string.c ft_printf/write_char.c \
 # ft_printf/write_nbr.c ft_printf/write_other.c ft_printf/write_all.c ft_printf/write_all2.c \
-# ft_printf/ft_printf_fd.c
+# ft_printf/ft_printf_fd.c ft_sqrt.c ft_abs_val.c ft_power.c
 
 all: $(NAME)
 

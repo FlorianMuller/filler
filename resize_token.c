@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:33:15 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 15:51:35 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:43:18 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_get_token_diff(t_env *env)
 		ft_point_plus(&p, env->tokensize.x - 1);
 	}
 
-	ft_printf_fd(fd, "DIFF: x: %3d | y: %3d\n", env->tokendiff.x, env->tokendiff.y);
+	// ft_printf_fd(fd, "DIFF: x: %3d | y: %3d\n", env->tokendiff.x, env->tokendiff.y);
 }
 
 void	ft_get_new_tokensize(t_env *env, t_point *size)
@@ -47,7 +47,7 @@ void	ft_get_new_tokensize(t_env *env, t_point *size)
 	size->x = size->x - env->tokendiff.x + 1;
 	size->y = size->y - env->tokendiff.y + 1;
 
-	ft_printf_fd(fd, "SIZE: x: %3d | y: %3d\n", size->x, size->y);
+	// ft_printf_fd(fd, "SIZE: x: %3d | y: %3d\n", size->x, size->y);
 }
 
 void	ft_get_new_token(t_env *env, char ***new_tok, t_point new_toksize)

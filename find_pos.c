@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:49:08 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 16:09:44 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:07:33 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,33 @@ void	ft_point_minus(t_point *pos, int x_max)
 t_point	ft_find_pos(t_env env)
 {
 	t_point	pos;
+	// t_point	valid_pos;
 
-	if (env.mytoken == 'O')
-		ft_set_point(&pos, env.mapsize.x - 1, env.mapsize.y - 1);
-	else
-		ft_set_point(&pos, 0, 0);
-	while (pos.y != env.mapsize.y && pos.y >= 0 && !ft_check_pos(env, pos))
-	{
-		// ft_printf_fd(fd, "pos.x: %d | pos.y: %d\n", pos.x, pos.y);
-		if (env.mytoken == 'O')
-			ft_point_minus(&pos, env.mapsize.x - 1);
-		else
-			ft_point_plus(&pos, env.mapsize.x - 1);
-	}
-	ft_printf_fd(fd, "Pos:\n%d %d\n", pos.y, pos.x);
+	// ft_set_point(&pos, 0, 0);
+	// while (pos.y != env.mapsize.y)
+	// {
+	// 	if (ft_check_pos(env, pos))
+	// 	{
+	// 		valid_pos = pos;
+	// 		ft_printf_fd(fd, "|Pos:\n%d %d\n", pos.y, pos.x);
+	// 		ft_printf_fd(fd, "|dist: %d\n", ft_dist_to_adv(env, pos));
+	// 	}
+	// 	ft_point_plus(&pos, env.mapsize.x - 1);
+	// }
+
+	pos = ft_get_closer(env);
+	ft_printf_fd(fd, "POSITION:\n%d %d\n", pos.y, pos.x);
 	return (pos);
 }
+	// if (env.mytoken == 'O')
+	// 	ft_set_point(&pos, env.mapsize.x - 1, env.mapsize.y - 1);
+	// else
+	// 	ft_set_point(&pos, 0, 0);
+	// while (pos.y != env.mapsize.y && pos.y >= 0 && !ft_check_pos(env, pos))
+	// {
+	// 	// ft_printf_fd(fd, "pos.x: %d | pos.y: %d\n", pos.x, pos.y);
+	// 	if (env.mytoken == 'O')
+	// 		ft_point_minus(&pos, env.mapsize.x - 1);
+	// 	else
+	// 		ft_point_plus(&pos, env.mapsize.x - 1);
+	// }

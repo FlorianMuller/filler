@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:15 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/20 16:07:29 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:42:49 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int main()
 		if (pos.y >= env.mapsize.y || pos.y < 0)
 			break;
 		ft_printf("%d %d\n", pos.y - env.tokendiff.y, pos.x - env.tokendiff.x);
-		ft_printf_fd(fd, "====\n");
+		ft_printf_fd(fd, "====================================\n");
 		ft_get_map(&env);
 	}
 	ft_printf_fd(fd, "\n\n~~~~~END !~~~~~\n");
