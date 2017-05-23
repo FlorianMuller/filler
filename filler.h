@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:44 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/22 18:31:25 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/23 19:35:48 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,17 @@ void			ft_get_mapsize(t_env *env);
 void			ft_get_map(t_env *env);
 void			ft_get_tokensize(t_env *env);
 void			ft_get_token(t_env *env);
-
 void			ft_resize_token(t_env *env);
 
-t_point			ft_find_pos(t_env env);
+t_point			ft_find_pos(t_env env, int *phase);
 int				ft_check_pos(t_env env, t_point pos);
 
 t_point			ft_get_closer(t_env env);
 int				ft_dist_to_adv(t_env env, t_point mypos);
+
+t_point			ft_surround(t_env env);
+int				ft_is_in_contact(t_env env);
+
+t_point			ft_complete(t_env env);
 
 #endif

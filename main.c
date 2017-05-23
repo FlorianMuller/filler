@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:15 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/22 20:42:49 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/23 16:24:49 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int main()
 {
 	t_env	env;
 	t_point	pos;
+	int 	phase;
 
+	phase = 0;
 	fd = open("log.txt", O_RDWR);
 	ft_get_mytoken(&env);
 	ft_init_map(&env);
@@ -63,7 +65,7 @@ int main()
 		ft_get_tokensize(&env);
 		ft_get_token(&env);
 		ft_resize_token(&env);
-		pos = ft_find_pos(env);
+		pos = ft_find_pos(env, &phase);
 		ft_tabc_del(&(env.token));
 		if (pos.y >= env.mapsize.y || pos.y < 0)
 			break;

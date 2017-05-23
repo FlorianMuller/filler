@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:49:08 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/22 20:07:33 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/23 19:41:33 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,27 +76,34 @@ void	ft_point_minus(t_point *pos, int x_max)
 }
 
 
-t_point	ft_find_pos(t_env env)
+t_point	ft_find_pos(t_env env, int *phase)
 {
 	t_point	pos;
-	// t_point	valid_pos;
-
-	// ft_set_point(&pos, 0, 0);
-	// while (pos.y != env.mapsize.y)
-	// {
-	// 	if (ft_check_pos(env, pos))
-	// 	{
-	// 		valid_pos = pos;
-	// 		ft_printf_fd(fd, "|Pos:\n%d %d\n", pos.y, pos.x);
-	// 		ft_printf_fd(fd, "|dist: %d\n", ft_dist_to_adv(env, pos));
-	// 	}
-	// 	ft_point_plus(&pos, env.mapsize.x - 1);
-	// }
-
-	pos = ft_get_closer(env);
+	if (*phase == 0 && ft_is_in_contact(env))
+	{
+		(*phase)++;
+		// ft_printf_fd(fd, "\n\n========================\nPHASE II\n========================\n\n");
+	}
+	if (*phase > 0 && *phase < 10)
+	{
+		pos = ft_surround(env);
+		if (pos.x == -1 && pos.y == -1)
+		{
+			(*phase)++;
+			pos = ft_get_closer(env);
+			// ft_printf_fd(fd, "\n\n========================\nPHASE I\n========================\n\n");
+		}
+		else
+			*phase = 1;
+	}
+	if (*phase == 0)
+		pos = ft_get_closer(env);
+	if (*phase == 10)
+		pos = ft_complete(env);
 	ft_printf_fd(fd, "POSITION:\n%d %d\n", pos.y, pos.x);
 	return (pos);
 }
+	
 	// if (env.mytoken == 'O')
 	// 	ft_set_point(&pos, env.mapsize.x - 1, env.mapsize.y - 1);
 	// else

@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:14:40 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/22 20:51:43 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/05/23 19:21:07 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int		ft_dist(t_point a, t_point b)
 {
-	int res;
+	// int res;
 
-	res = ft_power(ft_abs_val(b.x - a.x), 2);
-	ft_printf_fd(fd, "				r = |b.x - a.x|^2 = %d\n", res);
-	res = res + ft_power(ft_abs_val(b.y - a.y), 2);
-	ft_printf_fd(fd, "				r + |b.y - a.y|^2 = %d\n", res);
-	res = ft_sqrt(res);
-	ft_printf_fd(fd, "				sqrt(r) = %d\n", res);
-	if (res != (int)ft_sqrt(ft_power(ft_abs_val(a.x - b.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)))
-		printf("				DIFF ! :o\n");	
+	// res = ft_power(ft_abs_val(b.x - a.x), 2);
+	// ft_printf_fd(fd, "				r = |b.x - a.x|^2 = %d\n", res);
+	// res = res + ft_power(ft_abs_val(b.y - a.y), 2);
+	// ft_printf_fd(fd, "				r + |b.y - a.y|^2 = %d\n", res);
+	// res = ft_sqrt(res);
+	// ft_printf_fd(fd, "				sqrt(r) = %d\n", res);
+	// if (res != (int)ft_sqrt(ft_power(ft_abs_val(a.x - b.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)))
+	// 	printf("				DIFF ! :o\n");	
 
 	return (ft_sqrt(ft_power(ft_abs_val(b.x - a.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)));
 }
@@ -70,7 +70,7 @@ t_point	ft_get_closer(t_env env)
 	int		dist;
 	int		best_dist;
 
-	ft_set_point(&pos, 0,0);
+	ft_set_point(&pos, 0, 0);
 	best_dist = -1;
 	while (pos.y != env.mapsize.y)
 	{
