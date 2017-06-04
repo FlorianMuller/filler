@@ -56,8 +56,8 @@ int main()
 	t_point	pos;
 	int 	phase;
 
-	phase = 0;
-	fd = open("log.txt", O_RDWR);
+	phase = -8;
+	// fd = open("log.txt", O_RDWR);
 	ft_get_mytoken(&env);
 	ft_init_map(&env);
 	while (1)
@@ -70,10 +70,10 @@ int main()
 		if (pos.y >= env.mapsize.y || pos.y < 0)
 			break;
 		ft_printf("%d %d\n", pos.y - env.tokendiff.y, pos.x - env.tokendiff.x);
-		ft_printf_fd(fd, "====================================\n");
+		// ft_printf_fd(fd, "====================================\n");
 		ft_get_map(&env);
 	}
-	ft_printf_fd(fd, "\n\n~~~~~END !~~~~~\n");
+	// ft_printf_fd(fd, "\n\n~~~~~END !~~~~~\n");
 	ft_tabc_del(&(env.map));
 	ft_printf("0 0\n");
 	return (0);

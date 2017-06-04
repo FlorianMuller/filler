@@ -75,14 +75,58 @@ void	ft_point_minus(t_point *pos, int x_max)
 		pos->x--;
 }
 
+t_point	ft_go_up(t_env env)
+{
+	t_point	obj;
+	t_point	pos;
+	t_point	p;
+	t_point	final_pos;
+	t_point	best_pos;
+	int		dist;
+	int		best_dist;
+	
+	best_dist = -1;
+	ft_set_point(&pos, 0, 0);
+	// ft_set_point(&obj, 14, 0);
+	ft_set_point(&obj, 8, 7);
+	while (env.map[pos.y])
+	{
+		if (ft_check_pos(env, pos))
+		{
+			ft_set_point(&p, 0, 0);
+			while(env.token[p.y])
+			{
+				ft_set_point(&final_pos, pos.x + p.x, pos.y + p.y);
+				dist = ft_dist(final_pos, obj);
+				if (best_dist == -1 || dist < best_dist)
+				{
+					best_dist = dist;
+					best_pos = pos;
+				}
+			ft_point_plus(&p, env.tokensize.x - 1);
+			}
+		}
+		ft_point_plus(&pos, env.mapsize.x - 1);
+	}
+	return (best_pos);
+}
 
 t_point	ft_find_pos(t_env env, int *phase)
 {
 	t_point	pos;
-	if (*phase == 0 && ft_is_in_contact(env))
+	/*
+	if (!ft_)
+		*phase = 2;
+	*/
+	if (*phase <= 0 && ft_is_in_contact(env))
 	{
-		(*phase)++;
+		*phase = 1;
 		// ft_printf_fd(fd, "\n\n========================\nPHASE II\n========================\n\n");
+	}
+	if (*phase < 0)
+	{
+		pos = ft_go_up(env);
+		(*phase)++;
 	}
 	if (*phase > 0 && *phase < 10)
 	{
@@ -100,7 +144,7 @@ t_point	ft_find_pos(t_env env, int *phase)
 		pos = ft_get_closer(env);
 	if (*phase == 10)
 		pos = ft_complete(env);
-	ft_printf_fd(fd, "POSITION:\n%d %d\n", pos.y, pos.x);
+	// ft_printf_fd(fd, "POSITION:\n%d %d\n", pos.y, pos.x);
 	return (pos);
 }
 	

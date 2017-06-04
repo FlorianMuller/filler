@@ -14,7 +14,7 @@
 
 int		ft_is_in_contact(t_env env)
 {
-		ft_printf_fd(fd, "	A\n");
+		// ft_printf_fd(fd, "	A\n");
 	t_point	pos;
 	int		contact;
 
@@ -163,13 +163,13 @@ t_point	ft_surround(t_env env)
 	{
 		if (ft_check_pos(env, pos))
 		{
-			ft_printf_fd(fd, "==POS==\n");
-			ft_printf_fd(fd, "X: %3d | Y: %3d\n", pos.x, pos.y);
+			// ft_printf_fd(fd, "==POS==\n");
+			// ft_printf_fd(fd, "X: %3d | Y: %3d\n", pos.x, pos.y);
 			contact = ft_contact(env, pos);
-			ft_printf_fd(fd, "CONTACT: %d\n", contact);
+			// ft_printf_fd(fd, "CONTACT: %d\n", contact);
 			if (best_contact == -1 || contact > best_contact)
 			{
-				ft_printf_fd(fd, "BEST CONTACT !\n");
+				// ft_printf_fd(fd, "BEST CONTACT !\n");
 				best_contact = contact;
 				best_pos = pos;
 			}

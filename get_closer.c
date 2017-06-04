@@ -25,7 +25,8 @@ int		ft_dist(t_point a, t_point b)
 	// if (res != (int)ft_sqrt(ft_power(ft_abs_val(a.x - b.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)))
 	// 	printf("				DIFF ! :o\n");	
 
-	return (ft_sqrt(ft_power(ft_abs_val(b.x - a.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)));
+	// return (ft_sqrt(ft_power(ft_abs_val(b.x - a.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2)));
+	return (ft_power(ft_abs_val(b.x - a.x), 2) + ft_power(ft_abs_val(b.y - a.y), 2));
 }
 
 int	ft_dist_to_adv(t_env env, t_point pos)
@@ -42,17 +43,17 @@ int	ft_dist_to_adv(t_env env, t_point pos)
 	{
 		if (ft_is_adv(env.map[advpos.y][advpos.x], env.mytoken))
 		{
-			ft_printf_fd(fd, "	ADV: x: %d | y: %d\n", advpos.x, advpos.y);
+			// ft_printf_fd(fd, "	ADV: x: %d | y: %d\n", advpos.x, advpos.y);
 			ft_set_point(&p, 0, 0);
 			while (env.token[p.y])
 			{
 				ft_set_point(&mypos, pos.x + p.x, pos.y + p.y);
-				ft_printf_fd(fd, "		MYPOS: x: %d | y: %d\n", mypos.x, mypos.y);
+				// ft_printf_fd(fd, "		MYPOS: x: %d | y: %d\n", mypos.x, mypos.y);
 				dist = ft_dist(mypos, advpos);
-				ft_printf_fd(fd, "		DIST: %d\n", dist);
+				// ft_printf_fd(fd, "		DIST: %d\n", dist);
 				if (best_dist == -1 || dist < best_dist)
 				{
-					ft_printf_fd(fd, "		BEST !\n");
+					// ft_printf_fd(fd, "		BEST !\n");
 					best_dist = dist;
 				}
 				ft_point_plus(&p, env.tokensize.x - 1);
@@ -74,16 +75,16 @@ t_point	ft_get_closer(t_env env)
 	best_dist = -1;
 	while (pos.y != env.mapsize.y)
 	{
-		ft_printf_fd(fd, "[%2d,%2d]\n", pos.x, pos.y);
+		// ft_printf_fd(fd, "[%2d,%2d]\n", pos.x, pos.y);
 		if (ft_check_pos(env, pos))
 		{
-			ft_printf_fd(fd, "==POS==\n");
-			ft_printf_fd(fd, "X: %3d | Y: %3d\n", pos.x, pos.y);
+			// ft_printf_fd(fd, "==POS==\n");
+			// ft_printf_fd(fd, "X: %3d | Y: %3d\n", pos.x, pos.y);
 			dist = ft_dist_to_adv(env, pos);
-			ft_printf_fd(fd, "DIST: %d\n", dist);
+			// ft_printf_fd(fd, "DIST: %d\n", dist);
 			if (best_dist == -1 || dist < best_dist)
 			{
-				ft_printf_fd(fd, "BEST DIST !\n");
+				// ft_printf_fd(fd, "BEST DIST !\n");
 				best_dist = dist;
 				best_pos = pos;
 			}

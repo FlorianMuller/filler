@@ -77,10 +77,10 @@ void	ft_resize_token(t_env *env)
 	env->tokensize = new_toksize;
 
 	int n = 0;
-	ft_printf_fd(fd, "New Token:\n");
+	// ft_printf_fd(fd, "New Token:\n");
 	while (env->token[n])
 	{
-		ft_printf_fd(fd, "%s\n", env->token[n]);
+		// ft_printf_fd(fd, "%s\n", env->token[n]);
 		n++;
 	}
 }

@@ -33,7 +33,7 @@ typedef struct	s_env
 	t_point	tokendiff;
 }				t_env;
 
-int fd;
+// int fd;
 
 void			ft_passnline(size_t n);
 void			ft_set_point(t_point *p, int x, int y);
@@ -54,6 +54,7 @@ int				ft_check_pos(t_env env, t_point pos);
 
 t_point			ft_get_closer(t_env env);
 int				ft_dist_to_adv(t_env env, t_point mypos);
+int				ft_dist(t_point a, t_point b);
 
 t_point			ft_surround(t_env env);
 int				ft_is_in_contact(t_env env);
