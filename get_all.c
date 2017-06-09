@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 20:07:47 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/23 18:45:55 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/09 18:36:46 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,29 @@ void	ft_get_mytoken(t_env *env)
 void	ft_get_mapsize(t_env *env)
 {
 	char	*s;
+	int		i;
 
 	get_next_line(0, &s);
-	env->mapsize.y = ft_atoi(s + 8);
-	env->mapsize.x = ft_atoi(s + 11);
+	env.map_size.y = ft_atoi(s + 8);
+	while (!ft_isdigit(s[i]))
+		i++;
+	while (ft_isdigit(s[i]))
+		i++;
+	env.map_size.x = ft_atoi(s + i);
 	ft_strdel(&s);
-	
+
 	// ft_printf_fd(fd, "mapsize.y: %d\n", env->mapsize.y);
 	// ft_printf_fd(fd, "mapsize.x: %d\n", env->mapsize.x);
+	
+	// char	*s;
+
+	// get_next_line(0, &s);
+	// env->mapsize.y = ft_atoi(s + 8);
+	// env->mapsize.x = ft_atoi(s + 11);
+	// ft_strdel(&s);
 }
+
+
 
 void	ft_get_map(t_env *env)
 {
