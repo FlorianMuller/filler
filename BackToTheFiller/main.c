@@ -6,11 +6,12 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:19:10 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/12 00:20:29 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/12 17:03:11 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "backToTheFiller.h"
+#include <fcntl.h>
 
 void	ft_passnline(size_t n)
 {
@@ -18,7 +19,7 @@ void	ft_passnline(size_t n)
 
 	while (n != 0)
 	{
-		get_next_line(0, &s);
+		get_next_line(FD, &s);
 		ft_strdel(&s);
 		n--;
 	}
@@ -95,16 +96,20 @@ int main()
 	char	*s;
 
 	// freopen("/dev/tty", "rw", stdin);
-	FILE *new = fdopen(3, "rw");
-	freopen("/dev/tty", "rw", new);
+
+	// FILE *new = fdopen(3, "rw");
+	// freopen("/dev/tty", "rw", new);
+
+	open("log_vm.txt", O_RDWR);
+
 	printf("YEAH\n");
-	if (ft_init_ncurses())
-		return (1);
+	// if (ft_init_ncurses())
+		// return (1);
 	ft_init_all(&env);
 	
 	ft_while(&env);
 	
-	while (get_next_line(0, &s) == 1)
+	while (get_next_line(FD, &s) == 1)
 	{
 		ft_strdel(&s);
 	}

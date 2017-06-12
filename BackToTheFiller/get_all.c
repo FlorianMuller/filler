@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 03:19:34 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/11 04:45:24 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/12 16:32:00 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_get_players(t_env *env)
 
 	env->p1 = NULL;
 	env->p2 = NULL;
-	while ((!env->p1 || !env->p2) && get_next_line(0, &s) == 1)
+	while ((!env->p1 || !env->p2) && get_next_line(FD, &s) == 1)
 	{
 		if (!ft_strncmp(s, "$$$", 3))
 		{
@@ -54,7 +54,7 @@ void	ft_get_map_size(t_env *env)
 	int		i;
 
 	i = 0;
-	get_next_line(0, &s);
+	get_next_line(FD, &s);
 	env->map_size.y = ft_atoi(s + 8);
 	while (!ft_isdigit(s[i]))
 		i++;
@@ -74,12 +74,12 @@ void	ft_init_map(t_env *env)
 	env->map_list->prev = NULL;
 	env->map_list->next = NULL;
 	env->map_list->map = ft_memalloc((env->map_size.y + 1) * sizeof(char *));
-	get_next_line(0, &s);
+	get_next_line(FD, &s);
 	printw("%s\n", s);
 	ft_strdel(&s);
 	while (y < env->map_size.y)
 	{
-		get_next_line(0, &s);
+		get_next_line(FD, &s);
 		env->map_list->map[y] = s;
 		y++;
 	}
