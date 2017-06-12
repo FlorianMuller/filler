@@ -18,7 +18,7 @@ int				ft_printf_fd(int fd, const char *format, ...)
 	t_all	all;
 	int		ret;
 
-	ft_init_all(&all);
+	ft_init_all_printf(&all);
 	va_start(all.ap, format);
 	if (ft_init_param_list(&all.param_list, all.ap, format))
 		return (-1);

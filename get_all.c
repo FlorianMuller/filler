@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 20:07:47 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/09 18:36:46 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/10 00:45:06 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void	ft_get_mapsize(t_env *env)
 	char	*s;
 	int		i;
 
+	i = 0;
 	get_next_line(0, &s);
-	env.map_size.y = ft_atoi(s + 8);
+	env->mapsize.y = ft_atoi(s + 8);
 	while (!ft_isdigit(s[i]))
 		i++;
 	while (ft_isdigit(s[i]))
 		i++;
-	env.map_size.x = ft_atoi(s + i);
+	env->mapsize.x = ft_atoi(s + i);
 	ft_strdel(&s);
 
 	// ft_printf_fd(fd, "mapsize.y: %d\n", env->mapsize.y);

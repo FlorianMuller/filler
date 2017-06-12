@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 18:45:06 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/17 18:51:36 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/11 04:43:46 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			ft_truc(t_all *all, int ret)
 	all->current_param = 1;
 	if (all->end && !all->write)
 	{
-		if (ft_reset_all(all) == NULL)
+		if (ft_reset_all_printf(all) == NULL)
 			return (-1);
 	}
 	else if (!all->end)
@@ -84,7 +84,7 @@ int			ft_printf(const char *format, ...)
 	t_all	all;
 	int		ret;
 
-	ft_init_all(&all);
+	ft_init_all_printf(&all);
 	va_start(all.ap, format);
 	if (ft_init_param_list(&all.param_list, all.ap, format))
 		return (-1);

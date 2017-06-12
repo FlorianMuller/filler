@@ -12,7 +12,7 @@
 
 #include "../libft.h"
 
-char	*ft_reset_all(t_all *all)
+char	*ft_reset_all_printf(t_all *all)
 {
 	all->output = ft_strnew(all->len);
 	all->i = 0;
@@ -25,7 +25,7 @@ char	*ft_reset_all(t_all *all)
 	return (all->output);
 }
 
-void	ft_init_all(t_all *all)
+void	ft_init_all_printf(t_all *all)
 {
 	all->output = NULL;
 	all->param_list = NULL;

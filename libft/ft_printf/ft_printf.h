@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 13:18:16 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/17 18:50:17 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/11 04:43:38 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int				ft_truc(t_all *all, int ret);
 int				ft_(t_all *all, const char *str);
 int				ft_free_all(t_all *all);
 
-void			ft_init_all(t_all *all);
-char			*ft_reset_all(t_all *all);
+void			ft_init_all_printf(t_all *all);
+char			*ft_reset_all_printf(t_all *all);
 int				ft_init_param_list(int **param_list, va_list ap,
 				const char *str);
 void			ft_find_param(int wanted_param, t_all *all);

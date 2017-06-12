@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../../libft/libft.h"
 #include <ncurses.h>
 
 int		ft_init_ncurses()

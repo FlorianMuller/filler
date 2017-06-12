@@ -5,21 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/05/15 16:25:16 by fmuller           #+#    #+#              #
-#    Updated: 2017/06/10 01:18:18 by fmuller          ###   ########.fr        #
+#    Created: 2017/06/10 00:59:16 by fmuller           #+#    #+#              #
+#    Updated: 2017/06/12 00:17:09 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 export CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -L$(LIBDIR) -l$(LIBNAME)
-NAME = fmuller.filler
-SRC =  main.c get_all.c resize_token.c find_pos.c get_closer.c surround.c complete.c
+CFLAGS = 
+#-Wall -Wextra -Werror
+LDFLAGS = -lncurses -L$(LIBDIR) -l$(LIBNAME)
+NAME = backToTheFiller
+SRC = main.c get_all.c map.c
 OBJ = $(SRC:.c=.o)
 
 # LIBFT
 LIBNAME = ft
-LIBDIR = libft
+LIBDIR = ../libft
 LIBFT = $(addprefix $(LIBDIR)/,lib$(LIBNAME).a)
 export LIBFT_SRC_NAME = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c  ft_memmove.c ft_memchr.c ft_memcmp.c \
 ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strlcat.c \
@@ -40,14 +41,15 @@ ft_printf/write_nbr.c ft_printf/write_other.c ft_printf/write_all.c ft_printf/wr
 ft_printf/ft_printf_fd.c ft_sqrt.c ft_abs_val.c ft_power.c
 LIBFT_SRC = $(addprefix $(LIBDIR)/,$(LIBFT_SRC_NAME))
 
+
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(LDFLAGS) -o $@ $(OBJ)
+	@$(CC) $(LDFLAGS) $(OBJ) -o $@
 	@echo "✅ $(NAME) created"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -c $^ -o $@
 
 $(LIBFT): $(LIBFT_SRC)
 	@$(MAKE) -C $(LIBDIR)
@@ -55,13 +57,13 @@ $(LIBFT): $(LIBFT_SRC)
 .PHONY: clean fclean re
 
 clean:
-	@rm -f $(OBJ)
-	@$(MAKE) -C $(LIBDIR) $@
+	@rm -rf $(OBJ)
+	@$(MAKE) -C $(LIBDIR) clean
 	@echo "❌  object files removed"
 
 fclean: clean
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBDIR) $@
+	@rm -rf $(NAME)
+	@$(MAKE) -C $(LIBDIR) fclean
 	@echo "❌  $(NAME) removed"
 
 re: fclean all

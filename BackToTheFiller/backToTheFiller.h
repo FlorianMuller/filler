@@ -6,12 +6,15 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:30:00 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/09 18:35:39 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/11 04:44:57 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BACKTOTHEFILLER
 # define BACKTOTHEFILLER
+
+# include "../libft/libft.h"
+# include <ncurses.h>
 
 typedef struct	s_point
 {
@@ -19,13 +22,26 @@ typedef struct	s_point
 	int	y;
 }				t_point;
 
+typedef struct	s_map
+{
+	char			**map;
+	struct s_map	*next;
+	struct s_map	*prev;
+}				t_map;
+
 typedef struct	s_env
 {
 	char		*p1;
 	char		*p2;
-	char		***map;
+	t_map		*map_list;
 	t_point		map_size;
 }				t_env;
+
+
+void			ft_init_all(t_env *env);
+int				ft_next_map(t_env *env);
+int				ft_prev_map(t_env *env);
+void			ft_print_map(char	**map);
 
 #endif
 
