@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:19:10 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/13 03:31:11 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/13 18:54:43 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ int		ft_init_ncurses()
 	}
 	start_color();
 	curs_set(0);
-	timeout(1000);
+	timeout(200);
 	return (0);
 }
 
-void	ft_end_ncurses()
+void	ft_end_ncurses(int fd)
 {
 	curs_set(1);
 	endwin();
+	close(fd);
 	printf("TOTO\n");
 }
 
@@ -58,15 +59,15 @@ int		ft_input(int *forward, int *speed, int *pause)
 	if (input == 'q' || input == 'Q')
 		return(1);
 	else if (input == '1')
-		*speed = 1000;
-	else if (input == '2')
 		*speed = 800;
-	else if (input == '3')
-		*speed = 600;
-	else if (input == '4')
+	else if (input == '2')
 		*speed = 400;
-	else if (input == '5')
+	else if (input == '3')
 		*speed = 200;
+	else if (input == '4')
+		*speed = 50;
+	else if (input == '5')
+		*speed = 15;
 	else if (input == '6')
 		*speed = 0;
 	else if (input == ' ')
@@ -95,14 +96,17 @@ void	ft_while(t_env *env)
 	int	pause;
 
 	forward = 1;
-	speed = 1000;
+	speed = 200;
 	pause = 0;
 
 	while (1)
 	{
 		if (ft_input(&forward, &speed, &pause))
 			break;
-		ft_next_map(env);
+		if (forward)
+			ft_next_map(env);
+		else
+			ft_prev_map(env);
 		refresh();
 	}
 }
@@ -110,7 +114,8 @@ void	ft_while(t_env *env)
 int main()
 {
 	t_env	env;
-	char	*s;
+	// char	*s;
+	int		fd;
 
 	// freopen("/dev/tty", "rw", stdin);
 
@@ -119,10 +124,10 @@ int main()
 
 	// printf ("fd : %d\n", open("log_vm.txt", O_RDWR));
 
-	printf ("fd : %d\n", open("mypipe", O_RDONLY));
+	mknod("coolpipe", S_IFIFO | 0666, 0);
+	fd = open("coolpipe", O_RDONLY);
 
 	// printf("TOTO\n");
-	// mknod("superpipe3", S_IFIFO | 0666, 0);
 	// printf ("fd : %d\n", open("superpipe3", O_RDONLY));
 	// printf("BATEAU\n");
 
@@ -132,11 +137,11 @@ int main()
 	
 	ft_while(&env);
 	
-	while (get_next_line(FD, &s) == 1)
-	{
-		ft_strdel(&s);
-	}
-	ft_end_ncurses();
+	// while (get_next_line(FD, &s) == 1)
+	// {
+	// 	ft_strdel(&s);
+	// }
+	ft_end_ncurses(fd);
 	return (0);
 }
 

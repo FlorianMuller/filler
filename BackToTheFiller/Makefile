@@ -6,13 +6,13 @@
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/10 00:59:16 by fmuller           #+#    #+#              #
-#    Updated: 2017/06/12 00:17:09 by fmuller          ###   ########.fr        #
+#    Updated: 2017/06/13 17:37:54 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 export CC = gcc
-CFLAGS = 
-#-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra 
+#-Werror
 LDFLAGS = -lncurses -L$(LIBDIR) -l$(LIBNAME)
 NAME = backToTheFiller
 SRC = main.c get_all.c map.c
