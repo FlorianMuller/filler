@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 03:19:34 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/12 16:32:00 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/13 01:28:19 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_init_map(t_env *env)
 	env->map_list->next = NULL;
 	env->map_list->map = ft_memalloc((env->map_size.y + 1) * sizeof(char *));
 	get_next_line(FD, &s);
-	printw("%s\n", s);
+	mvprintw(0, 3, "%s\n", s);
 	ft_strdel(&s);
 	while (y < env->map_size.y)
 	{
@@ -86,10 +86,22 @@ void	ft_init_map(t_env *env)
 	ft_print_map(env->map_list->map);
 }
 
+void	ft_init_color()
+{
+	// init_color(COLOR_BLACK, 0, 0, 0);
+	init_color(COLOR_YELLOW, 1000, 616, 0);
+	init_color(COLOR_BLUE, 153, 158, 133);
+	init_pair(1, COLOR_YELLOW, COLOR_BLUE);
+	init_pair(2, COLOR_CYAN, COLOR_BLUE);
+	init_pair(3, COLOR_RED, COLOR_BLUE);
+	init_pair(4, COLOR_WHITE, COLOR_BLUE);
+	init_pair(5, COLOR_WHITE, COLOR_BLUE);
+}
 
 void	ft_init_all(t_env *env)
 {
 	ft_get_players(env);
 	ft_get_map_size(env);
 	ft_init_map(env);
+	ft_init_color();
 }
