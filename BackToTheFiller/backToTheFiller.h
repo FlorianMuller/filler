@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:30:00 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/12 16:57:09 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/13 22:42:45 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct	s_env
 
 
 void			ft_init_all(t_env *env);
+
+int				ft_init_ncurses();
+void			ft_end_ncurses(int fd);
+
+void			ft_while(t_env *env);
+
 int				ft_next_map(t_env *env);
 int				ft_prev_map(t_env *env);
 void			ft_print_map(char	**map);

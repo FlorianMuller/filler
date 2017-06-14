@@ -1,49 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ncurses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/09 17:19:10 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/13 22:42:58 by fmuller          ###   ########.fr       */
+/*   Created: 2017/06/13 22:20:25 by fmuller           #+#    #+#             */
+/*   Updated: 2017/06/13 22:36:23 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "backToTheFiller.h"
-#include <fcntl.h>
 
-void	ft_passnline(size_t n)
+
+int		ft_init_ncurses()
 {
-	char *s;
-
-	while (n != 0)
+	initscr();
+	cbreak();
+	noecho();
+	keypad(stdscr, TRUE);
+	if (has_colors() == FALSE)
 	{
-		get_next_line(FD, &s);
-		ft_strdel(&s);
-		n--;
+		endwin();
+		ft_printf("Your terminal does not support color\n");
+		return (1);
 	}
+	start_color();
+	curs_set(0);
+	timeout(200);
+	return (0);
 }
 
-int main()
+void	ft_end_ncurses(int fd)
 {
-	t_env	env;
-	// char	*s;
-	int		fd;
-
-	mknod("coolpipe", S_IFIFO | 0666, 0);
-	fd = open("coolpipe", O_RDONLY);
-
-	if (ft_init_ncurses())
-		return (1);
-	ft_init_all(&env);
-	
-	ft_while(&env);
-	
-	// while (get_next_line(FD, &s) == 1)
-	// {
-	// 	ft_strdel(&s);
-	// }
-	ft_end_ncurses(fd);
-	return (0);
+	curs_set(1);
+	endwin();
+	close(fd);
+	printf("TOTO\n");
 }
