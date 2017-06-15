@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 03:19:34 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 15:42:32 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 03:31:54 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,25 @@ void	ft_get_map_size(t_env *env)
 	ft_strdel(&s);
 }
 
+void	ft_print_first_map_line(int fd)
+{
+	int		i;
+	char	*s;
+
+	i = 4;
+	get_next_line(fd, &s);
+	// attron(COLOR_PAIR(5));
+	move(Y_FIRST_MAP_LINE, 7);
+	printw(" ");
+	while (s[i])
+	{
+		printw("%c ", s[i]);
+		i++;
+	}
+	// attroff(COLOR_PAIR(5));
+	ft_strdel(&s);
+}
+
 void	ft_init_map(t_env *env)
 {
 	char	*s;
@@ -74,9 +93,7 @@ void	ft_init_map(t_env *env)
 	env->map_list->prev = NULL;
 	env->map_list->next = NULL;
 	env->map_list->map = ft_memalloc((env->map_size.y + 1) * sizeof(char *));
-	get_next_line(env->fd, &s);
-	mvprintw(0, 3, "%s\n", s);
-	ft_strdel(&s);
+	ft_print_first_map_line(env->fd);
 	while (y < env->map_size.y)
 	{
 		get_next_line(env->fd, &s);
