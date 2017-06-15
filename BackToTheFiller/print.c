@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 00:25:01 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/15 01:57:49 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 03:05:12 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ void	ft_print_letter(int y, char letter)
 {
 	char	big_alph[4][94];
 	char	alph[27];
-	int		big_alph_len[26];
+	int		big_alph_len[26] = {4, 4, 3, 4, 4, 4, 4, 4, 2, 2, 3, 2, 6, 4, 4, 4, 4, 3, 3, 4, 4, 3, 5, 3, 3, 3};
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	// ft_create_alph(&big_alph);
 	ft_strcpy(big_alph[0], "                      _                                                                      ");
 	ft_strcpy(big_alph[1], "  _. |_   _  _|  _  _|_  _  |_  o o |  | ._ _  ._   _  ._   _. ._  _ _|_                   _ ");
 	ft_strcpy(big_alph[2], " (_| |_) (_ (_| (/_  |  (_| | | | | |< | | | | | | (_) |_) (_| |  _>  |_ |_| \\/ \\/\\/ >< \\/ /_");
 	ft_strcpy(big_alph[3], "                         _|      _|                    |     |                          /    ");
 	ft_strcpy(alph, "abcdefghijklmnopqrstuvwxyz");
+
 	while (alph[i] != letter)
 	{
 		j += big_alph_len[i];
@@ -62,11 +62,10 @@ void	ft_print_letter(int y, char letter)
 
 void	ft_print_name(t_env *env)
 {
-	timeout(-1);
 	t_point	p;
-	char	vs[41];
+	char	vs[45];
 
-	ft_strcpy(vs, "       __ \n \\  / (_  \n  \\/  __) \n          ");
+	ft_strcpy(vs, "        __   \\  / (_     \\/  __)            ");
 	p.y = 0;
 	while (p.y < 4)
 	{
@@ -74,22 +73,28 @@ void	ft_print_name(t_env *env)
 		move(Y_NAME + p.y, 0);
 		while (p.x < (int)ft_strlen(env->p1) + (int)ft_strlen(env->p2) + 1)
 		{
-	printw("y: %d | x: %d\n", p.y, p.x);
-	getch();
-			if (p.x > (int)ft_strlen(env->p1) + 1)
-				ft_print_letter(p.y, env->p2[p.x - ft_strlen(env->p1) + 1]);
-			else if (p.x > (int)ft_strlen(env->p1))
-				printw("%.10s", vs + (p.y * 10));
+			if (p.x >= (int)ft_strlen(env->p1) + 1)
+			{
+				ft_print_letter(p.y, env->p2[p.x - (ft_strlen(env->p1) + 1)]);
+			}
+			else if (p.x >= (int)ft_strlen(env->p1))
+			{
+				printw("%.11s", vs + (p.y * 11));
+			}
 			else
+			{
 				ft_print_letter(p.y, env->p1[p.x]);
+			}
+
 			p.x++;
 		}
 		p.y++;
 	}
-	timeout(400);
 }
 
 /*
+012345678901234  
+fmuller|cpoulet
        __ 
  \  / (_  
   \/  __) 
@@ -110,7 +115,7 @@ void	ft_first_print(t_env *env)
   _. |_   _  _|  _  _|_  _  |_  o o |  | ._ _  ._   _  ._   _. ._  _ _|_                   _ 
  (_| |_) (_ (_| (/_  |  (_| | | | | |< | | | | | | (_) |_) (_| |  _>  |_ |_| \/ \/\/ >< \/ /_
                          _|      _|                    |     |                          /    
-a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z
+a,q b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z
 4, 4, 3, 4, 4, 4, 4, 4, 2, 2, 3, 2, 6, 4, 4, 4, 4, 3, 3, 4, 4, 3, 5, 3, 3, 3
 
 = 93
