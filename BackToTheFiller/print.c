@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 00:25:01 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/15 03:05:12 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 03:13:12 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ void	ft_print_name(t_env *env)
 		{
 			if (p.x >= (int)ft_strlen(env->p1) + 1)
 			{
+				attron(COLOR_PAIR(8));
 				ft_print_letter(p.y, env->p2[p.x - (ft_strlen(env->p1) + 1)]);
 			}
 			else if (p.x >= (int)ft_strlen(env->p1))
 			{
+				attrset(A_NORMAL);
 				printw("%.11s", vs + (p.y * 11));
 			}
 			else
 			{
+				attron(COLOR_PAIR(7));
 				ft_print_letter(p.y, env->p1[p.x]);
 			}
 

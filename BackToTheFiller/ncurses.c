@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:20:25 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 18:49:15 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 03:14:09 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	ft_init_color()
 	init_pair(2, COLOR_CYAN, COLOR_BLUE);
 	init_pair(3, COLOR_RED, COLOR_BLUE);
 	init_pair(4, COLOR_WHITE, COLOR_BLUE);
-	// init_pair(5, COLOR_WHITE, COLOR_BLUE);
+	init_pair(5, COLOR_WHITE, COLOR_BLUE);
+	init_pair(7, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(8, COLOR_CYAN, COLOR_BLACK);
 }
 
 
