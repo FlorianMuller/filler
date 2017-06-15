@@ -6,7 +6,7 @@
 #    By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/10 00:59:16 by fmuller           #+#    #+#              #
-#    Updated: 2017/06/14 01:09:32 by fmuller          ###   ########.fr        #
+#    Updated: 2017/06/14 15:41:15 by fmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra
 #-Werror
 LDFLAGS = -lncurses -L$(LIBDIR) -l$(LIBNAME)
 NAME = backToTheFiller
-SRC = main.c get_all.c map.c input.c ncurses.c print.c
+SRC = main.c init.c map.c input.c ncurses.c print.c
 OBJ = $(SRC:.c=.o)
 
 # LIBFT

@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:30:00 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/13 22:42:45 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/14 16:52:03 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include "../libft/libft.h"
 # include <ncurses.h>
 
-# define FD 3
+# define Y_TITLE 0
+# define Y_NAME 4 
+# define Y_FIRST_MAP_LINE 8
+# define Y_MAP 9
+
 
 typedef struct	s_point
 {
@@ -37,13 +41,17 @@ typedef struct	s_env
 	char		*p2;
 	t_map		*map_list;
 	t_point		map_size;
+	int			fd;
 }				t_env;
 
 
 void			ft_init_all(t_env *env);
 
 int				ft_init_ncurses();
+void			ft_init_color();
 void			ft_end_ncurses(int fd);
+
+void			ft_first_print(t_env *env);
 
 void			ft_while(t_env *env);
 
