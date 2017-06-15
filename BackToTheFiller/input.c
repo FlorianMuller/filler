@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:03:37 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 00:22:25 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 19:15:25 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,49 @@ int		ft_input(int *forward, int *speed, int *pause)
 	return (input);
 }
 
+#define SPACE_NUM 10
+
+void	ft_print_button(t_env env, int forward, int pause)
+{
+	t_point	p;
+
+	p.y = Y_MAP + env.map_size.y + 1;
+	p.x = ((((env.map_size.x * 2 + 1) - 28) / 2) + 7);
+	mvprintw(p.y, 0, "                                                                        ");
+	if (!forward)
+		attron(COLOR_PAIR(9));
+	mvprintw(p.y, p.x, " // ");
+	mvprintw(p.y + 1, p.x, " \\\\ ");
+	attrset(A_NORMAL);
+	p.x += 4;
+	mvprintw(p.y, p.x, "         %s         ", ((pause == 0) ? "||" : "|\\"));
+	mvprintw(p.y + 1, p.x, "         %s         ", ((pause == 0) ? "||" : "|/"));
+	p.x += 20;
+	if (forward)
+		attron(COLOR_PAIR(9));
+	mvprintw(p.y, p.x, " \\\\ ");
+	mvprintw(p.y + 1, p.x, " // ");
+	attrset(A_NORMAL);
+	mvprintw(p.y + 3, ((((env.map_size.x * 2 + 1) - 43) / 2) + 7),"[LeftArrow]      [Space]       [RightArrow]");
+}
+   // 023 
+ // . . . . . . . . . . . . . . . . . . . . . . . O O O O O O . . . . . . . . . . . 
+/*
+           //          |\          \\
+           \\          |/          //
+
+         //          |\          \\
+         \\          |/          //
+                                   
+ [LeftArrow]      [Space]       [RightArrow]
+
+         //     ||     \\
+         \\     ||     //
+                         
+[LeftArrow]  [Space]   [RightArrow]
+
+*/
+
 void	ft_while(t_env *env)
 {
 	int	forward;
@@ -52,10 +95,24 @@ void	ft_while(t_env *env)
 
 	while ((input = ft_input(&forward, &speed, &pause)) != 'q' && input != 'Q')
 	{
+		if (input != ERR)
+		{
+			ft_print_button(*env, forward, pause);
+			refresh();
+		}
 		if (input == ERR || (/*pause == 1 &&*/ (input == KEY_RIGHT  || input == KEY_LEFT)))
 		{
 			if (forward)
-				ft_next_map(env);
+			{
+				if (ft_next_map(env))
+				{
+					attron(COLOR_PAIR(10));
+					mvprintw(Y_MAP + env->map_size.y, 0, "================================================================================================");
+					//                                   "[1]  + 16275 exit 2     ./../filler_vm -f ../maps/map00 -p2 ./../fmuller.filler -p1  >&coolpipe"
+					attrset(A_NORMAL);
+					ft_print_button(*env, forward, pause);
+				}
+			}
 			else
 				ft_prev_map(env);
 			refresh();

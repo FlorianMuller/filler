@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 03:19:34 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/15 03:31:54 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 18:29:25 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	ft_init_map(t_env *env)
 		y++;
 	}
 	ft_print_map(env->map_list->map);
+	ft_print_button(*env, 1, 0);
 }
 
 void	ft_init_all(t_env *env)

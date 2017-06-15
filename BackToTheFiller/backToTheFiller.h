@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:30:00 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 16:52:03 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/15 18:29:04 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void			ft_init_color();
 void			ft_end_ncurses(int fd);
 
 void			ft_first_print(t_env *env);
+void			ft_print_button(t_env env, int forward, int pause);
 
 void			ft_while(t_env *env);
 
