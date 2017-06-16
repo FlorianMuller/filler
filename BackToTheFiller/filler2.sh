@@ -1,0 +1,1 @@
+./../filler_vm -f $1 -p1 $2 -p2 $3 >&coolpipe & ./backToTheFiller

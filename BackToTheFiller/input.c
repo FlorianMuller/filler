@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:03:37 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/15 19:15:25 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/16 03:20:57 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,23 @@ void	ft_while(t_env *env)
 			{
 				if (ft_next_map(env))
 				{
-					attron(COLOR_PAIR(10));
-					mvprintw(Y_MAP + env->map_size.y, 0, "================================================================================================");
-					//                                   "[1]  + 16275 exit 2     ./../filler_vm -f ../maps/map00 -p2 ./../fmuller.filler -p1  >&coolpipe"
-					attrset(A_NORMAL);
-					ft_print_button(*env, forward, pause);
+					// attron(COLOR_PAIR(10));
+					// mvprintw(Y_MAP + env->map_size.y, 0, "================================================================================================");
+					// //                                   "[1]  + 16275 exit 2     ./../filler_vm -f ../maps/map00 -p2 ./../fmuller.filler -p1  >&coolpipe"
+					// attrset(A_NORMAL);
+					// ft_print_button(*env, forward, pause);
 				}
 			}
 			else
 				ft_prev_map(env);
 			refresh();
 		}
+		// int 	n = 0;
+		// while (n < 1000)
+		// {
+		// 	printw("\n");
+		// 	n++;
+		// }
 	}
 }
 
