@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 04:18:18 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/15 03:35:37 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/16 18:12:02 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@ void	ft_print_map(char	**map)
 		move(Y_MAP + p.y, 3);
 		while(map[p.y][p.x])
 		{
-			if (map[p.y][p.x] == 'O' || map[p.y][p.x] == 'o')
+			if (map[p.y][p.x] == 'O' /*|| map[p.y][p.x] == 'o'*/)
 				attron(COLOR_PAIR(1));
-			else if (map[p.y][p.x] == 'X' || map[p.y][p.x] == 'x')
+			else if (map[p.y][p.x] == 'X' /*|| map[p.y][p.x] == 'x'*/)
 				attron(COLOR_PAIR(2));
-			else if (!ft_isdigit(map[p.y][p.x]))
-				attron(COLOR_PAIR(4));
 			// else if (map[p.y][p.x] == 'o' || map[p.y][p.x] == 'x')
 			// 	attron(COLOR_PAIR(3));
-			if (map[p.y][p.x] == 'o' || map[p.y][p.x] == 'x')
-				attron(A_BOLD);
+			else if (map[p.y][p.x] == 'o')
+				attron(COLOR_PAIR(3));
+			else if (map[p.y][p.x] == 'x')
+				attron(COLOR_PAIR(4));
+			else if (!ft_isdigit(map[p.y][p.x]))
+				attron(COLOR_PAIR(5));
+			// if (map[p.y][p.x] == 'o' || map[p.y][p.x] == 'x')
+			// 	attron(A_BOLD);
 			printw("%c", map[p.y][p.x]);
 			// if (map[p.y][p.x] == 'O' || map[p.y][p.x] == 'o' || map[p.y][p.x] == 'X' || map[p.y][p.x] == 'x' || map[p.y][p.x] == '.')
 			if (!(ft_isdigit(map[p.y][p.x]) && map[p.y][p.x + 1] != ' ') && map[p.y][p.x] != ' ')
@@ -45,27 +49,41 @@ void	ft_print_map(char	**map)
 		p.x = 0;
 	}
 	printw("\n");
-	// int n;
-
-	// n = 0;
-	// move(1, 0);
-	// while (map[n])
-	// {
-	// 	printw("%s\n", map[n]);
-	// 	n++;
-	// }
-	// refresh();
 }
 
-int		ft_get_map(t_env *env)
+void	ft_end(t_env *env, char	*str)
+{
+	int		score_p1;
+	int		score_p2;
+	char	*s;
+
+	score_p1 = ft_atoi(str + 10);
+	get_next_line(env->fd, &s);
+	score_p2 = ft_atoi(s + 10);
+	ft_strdel(&s);
+	if (score_p1 == score_p2)
+	{
+		init_pair(7, COLOR_YELLOW, COLOR_WHITE);
+		init_pair(8, COLOR_CYAN, COLOR_WHITE);
+	}
+	else if (score_p1 > score_p2)
+		init_pair(7, COLOR_YELLOW, COLOR_WHITE);
+	else
+		init_pair(8, COLOR_CYAN, COLOR_WHITE);
+}
+/*
+== O fin: 160
+*/
+int		ft_go_next_map(t_env *env)
 {
 	char	*s;
-	int		y;
 
 	if (get_next_line(env->fd, &s) == 0)
 		return (1);
-	while (ft_strncmp(s, "    012345", 10) )
+	while (ft_strncmp(s, "    012345", 10))
 	{
+		if (!ft_strncmp(s, "==", 2))
+			ft_end(env, s);
 		ft_strdel(&s);
 		if (get_next_line(env->fd, &s) == 0)
 		{
@@ -74,6 +92,16 @@ int		ft_get_map(t_env *env)
 		}
 	}
 	ft_strdel(&s);
+	return (0);
+}
+
+int		ft_get_map(t_env *env)
+{
+	char	*s;
+	int		y;
+
+	if (ft_go_next_map(env))
+		return (1);
 	y = 0;
 	env->map_list->next = ft_memalloc(sizeof(t_map));
 	env->map_list->next->prev = env->map_list;

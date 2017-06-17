@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:03:37 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/16 03:20:57 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:28:29 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		ft_input(int *forward, int *speed, int *pause)
 	else if (input == '5')
 		*speed = 15;
 	else if (input == '6')
+		*speed = 5;
+	else if (input == '0')
 		*speed = 0;
 	else if (input == ' ')
 		*pause = (*pause == 1) ? 0 : 1 ;
@@ -43,6 +45,7 @@ int		ft_input(int *forward, int *speed, int *pause)
 
 void	ft_print_button(t_env env, int forward, int pause)
 {
+	attrset(A_NORMAL);
 	t_point	p;
 
 	p.y = Y_MAP + env.map_size.y + 1;
@@ -64,23 +67,49 @@ void	ft_print_button(t_env env, int forward, int pause)
 	attrset(A_NORMAL);
 	mvprintw(p.y + 3, ((((env.map_size.x * 2 + 1) - 43) / 2) + 7),"[LeftArrow]      [Space]       [RightArrow]");
 }
-   // 023 
- // . . . . . . . . . . . . . . . . . . . . . . . O O O O O O . . . . . . . . . . . 
-/*
-           //          |\          \\
-           \\          |/          //
 
+/*
          //          |\          \\
          \\          |/          //
                                    
  [LeftArrow]      [Space]       [RightArrow]
 
-         //     ||     \\
-         \\     ||     //
+         //          ||          \\
+         \\          ||          //
                          
 [LeftArrow]  [Space]   [RightArrow]
 
+
+         1   2   3   4   5   6   0
+ 
+ ___  .___. +---+  ---   ___   ___   ___  
+| 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 0 | 
+ ---  .---. +---+  ---   ---   ---   ---  
 */
+
+void	ft_print_speed(t_env env, int input)
+{
+	int	n;
+	t_point	p;
+
+	n = 0;
+	p.y = Y_MAP + env.map_size.y + 6;
+	p.x = ((((env.map_size.x * 2 + 1) - 41) / 2) + 7);
+	while (n < 7)
+	{
+		if (input - '0' == n + 1 || (input - '0' == 0 && n == 6))
+			attron(COLOR_PAIR(9));
+		mvprintw(p.y, p.x, "+---+");
+		mvprintw(p.y + 1, p.x, "| %d |", ((n != 6) ? n + 1 : 0));
+		mvprintw(p.y + 2, p.x, "+---+");
+		attrset(A_NORMAL);
+		mvprintw(p.y, p.x + 5, " ");
+		mvprintw(p.y + 1, p.x + 5, " ");
+		mvprintw(p.y + 2, p.x + 5, " ");
+		p.x += 6;
+		n++;
+	}
+}
 
 void	ft_while(t_env *env)
 {
@@ -98,32 +127,17 @@ void	ft_while(t_env *env)
 		if (input != ERR)
 		{
 			ft_print_button(*env, forward, pause);
+			if (input >= '0' && input <= '6')
+				ft_print_speed(*env, input);
 			refresh();
 		}
-		if (input == ERR || (/*pause == 1 &&*/ (input == KEY_RIGHT  || input == KEY_LEFT)))
+		if (input == ERR || (input == KEY_RIGHT  || input == KEY_LEFT))
 		{
 			if (forward)
-			{
-				if (ft_next_map(env))
-				{
-					// attron(COLOR_PAIR(10));
-					// mvprintw(Y_MAP + env->map_size.y, 0, "================================================================================================");
-					// //                                   "[1]  + 16275 exit 2     ./../filler_vm -f ../maps/map00 -p2 ./../fmuller.filler -p1  >&coolpipe"
-					// attrset(A_NORMAL);
-					// ft_print_button(*env, forward, pause);
-				}
-			}
+				ft_next_map(env);				
 			else
 				ft_prev_map(env);
 			refresh();
 		}
-		// int 	n = 0;
-		// while (n < 1000)
-		// {
-		// 	printw("\n");
-		// 	n++;
-		// }
 	}
 }
-
-// 
