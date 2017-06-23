@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 04:18:18 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/19 17:43:36 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/23 18:18:58 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_map(char	**map)
 	while (map[p.y])
 	{
 		move(Y_MAP + p.y, 3);
-		while(map[p.y][p.x] && (p.x * 2) + 4 < max.x)
+		while(map[p.y][p.x])
 		{
 			if (map[p.y][p.x] == 'O')
 				attron(COLOR_PAIR(1));
@@ -35,8 +35,9 @@ void	ft_print_map(char	**map)
 				attron(COLOR_PAIR(4));
 			else if (!ft_isdigit(map[p.y][p.x]))
 				attron(COLOR_PAIR(5));
-			printw("%c", map[p.y][p.x]);
-			if (!(ft_isdigit(map[p.y][p.x]) && map[p.y][p.x + 1] != ' ') && map[p.y][p.x] != ' ')
+			if ((p.x * 2) + 4 < COLS)
+				printw("%c", map[p.y][p.x]);
+			if ((p.x * 2) + 4 < COLS && !(ft_isdigit(map[p.y][p.x]) && map[p.y][p.x + 1] != ' ') && map[p.y][p.x] != ' ')
 				printw(" ");
 			attrset(A_NORMAL);
 			p.x++;

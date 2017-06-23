@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:03:37 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/16 17:28:29 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/23 18:05:44 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,16 @@ void	ft_print_speed(t_env env, int input)
 	}
 }
 
+void	ft_resize(t_env *env)
+{
+	clear();
+	ft_print_title();
+	ft_print_name(env);
+	ft_print_first_map_line(*env);
+	ft_print_map(env->map_list->map);
+	mvprintw(Y_MAP + env->map_size.y + 9, 0, "[Q]       = Quit\n[cmd +/-] = Zoom");
+}
+
 void	ft_while(t_env *env)
 {
 	int	forward;
@@ -124,14 +134,21 @@ void	ft_while(t_env *env)
 
 	while ((input = ft_input(&forward, &speed, &pause)) != 'q' && input != 'Q')
 	{
-		if (input != ERR)
+		if (input == KEY_RESIZE)
+		{
+			ft_resize(env);
+			ft_print_button(*env, forward, pause);
+			ft_print_speed(*env, input);
+			refresh();
+		}
+		else if (input != ERR)
 		{
 			ft_print_button(*env, forward, pause);
 			if (input >= '0' && input <= '6')
 				ft_print_speed(*env, input);
 			refresh();
 		}
-		if (input == ERR || (input == KEY_RIGHT  || input == KEY_LEFT))
+		if ((!pause && input == ERR) || (input == KEY_RIGHT  || input == KEY_LEFT))
 		{
 			if (forward)
 				ft_next_map(env);				

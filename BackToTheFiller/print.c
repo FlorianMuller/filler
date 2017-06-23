@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 00:25:01 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/16 17:18:25 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/23 17:31:29 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@ void	ft_first_print(t_env *env)
 	ft_print_name(env);
 	ft_print_button(*env, 1, 0);
 	ft_print_speed(*env, '3');
-	mvprintw(Y_MAP + env->map_size.y + 9, 0, "[Q] = quit");
-	(void)env;
+	mvprintw(Y_MAP + env->map_size.y + 9, 0, "[Q]       = Quit\n[cmd +/-] = Zoom");
 }
 /*
 

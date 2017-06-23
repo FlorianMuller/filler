@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 03:19:34 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/16 17:13:59 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/06/23 18:10:50 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,38 @@ void	ft_get_map_size(t_env *env)
 	ft_strdel(&s);
 }
 
-void	ft_print_first_map_line(int fd)
+void	ft_print_first_map_line(t_env env)
 {
-	int		i;
-	char	*s;
+	int	n;
+	int	num;
 
-	i = 4;
-	get_next_line(fd, &s);
-	// attron(COLOR_PAIR(5));
-	move(Y_FIRST_MAP_LINE, 7);
-	printw(" ");
-	while (s[i])
+	n = 0;
+	num = 0;
+	attrset(A_NORMAL);
+	move(Y_FIRST_MAP_LINE, 8);
+	while (n < env.map_size.x && n + 8 < COLS)
 	{
-		printw("%c ", s[i]);
-		i++;
+		if (!(n % 10))
+			num = 0;
+		printw("%d ", num);
+		n++;
+		num++;
 	}
-	// attroff(COLOR_PAIR(5));
-	ft_strdel(&s);
+	// int		i;
+	// char	*s;
+
+	// i = 4;
+	// get_next_line(fd, &s);
+	// // attron(COLOR_PAIR(5));
+	// move(Y_FIRST_MAP_LINE, 7);
+	// printw(" ");
+	// while (s[i])
+	// {
+	// 	printw("%c ", s[i]);
+	// 	i++;
+	// }
+	// // attroff(COLOR_PAIR(5));
+	// ft_strdel(&s);
 }
 
 void	ft_init_map(t_env *env)
@@ -93,7 +108,9 @@ void	ft_init_map(t_env *env)
 	env->map_list->prev = NULL;
 	env->map_list->next = NULL;
 	env->map_list->map = ft_memalloc((env->map_size.y + 1) * sizeof(char *));
-	ft_print_first_map_line(env->fd);
+	ft_print_first_map_line(*env);
+	get_next_line(env->fd, &s);
+	ft_strdel(&s);
 	while (y < env->map_size.y)
 	{
 		get_next_line(env->fd, &s);
