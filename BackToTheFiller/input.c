@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:03:37 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/23 18:05:44 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/08/31 18:01:52 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,6 @@ void	ft_print_button(t_env env, int forward, int pause)
 	mvprintw(p.y + 3, ((((env.map_size.x * 2 + 1) - 43) / 2) + 7),"[LeftArrow]      [Space]       [RightArrow]");
 }
 
-/*
-         //          |\          \\
-         \\          |/          //
-                                   
- [LeftArrow]      [Space]       [RightArrow]
-
-         //          ||          \\
-         \\          ||          //
-                         
-[LeftArrow]  [Space]   [RightArrow]
-
-
-         1   2   3   4   5   6   0
- 
- ___  .___. +---+  ---   ___   ___   ___  
-| 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 0 | 
- ---  .---. +---+  ---   ---   ---   ---  
-*/
-
 void	ft_print_speed(t_env env, int input)
 {
 	int	n;
@@ -143,9 +124,10 @@ void	ft_while(t_env *env)
 		}
 		else if (input != ERR)
 		{
-			ft_print_button(*env, forward, pause);
 			if (input >= '0' && input <= '6')
 				ft_print_speed(*env, input);
+			else 
+				ft_print_button(*env, forward, pause);
 			refresh();
 		}
 		if ((!pause && input == ERR) || (input == KEY_RIGHT  || input == KEY_LEFT))
@@ -158,3 +140,22 @@ void	ft_while(t_env *env)
 		}
 	}
 }
+
+/*
+         //          |\          \\
+         \\          |/          //
+                                   
+ [LeftArrow]      [Space]       [RightArrow]
+
+         //          ||          \\
+         \\          ||          //
+                         
+[LeftArrow]  [Space]   [RightArrow]
+
+
+         1   2   3   4   5   6   0
+ 
+ ___  .___. +---+  ---   ___   ___   ___  
+| 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 0 | 
+ ---  .---. +---+  ---   ---   ---   ---  
+*/

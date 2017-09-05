@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:30:00 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/23 18:00:32 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/05 17:10:28 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			ft_init_all(t_env *env);
 
 int				ft_init_ncurses();
 void			ft_init_color();
-void			ft_end_ncurses(int fd);
+void			ft_end_ncurses();
 
 void			ft_first_print(t_env *env);
 void			ft_print_title();

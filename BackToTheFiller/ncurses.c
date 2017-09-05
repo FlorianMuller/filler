@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:20:25 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/16 18:17:13 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/05 15:32:25 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ void	ft_init_color()
 }
 
 
-void	ft_end_ncurses(int fd)
+void	ft_end_ncurses()
 {
 	curs_set(1);
 	endwin();
-	close(fd);
-	printf("TOTO\n");
 }

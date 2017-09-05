@@ -6,11 +6,17 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:15 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 15:31:56 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/05 17:51:17 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void	ft_set_point(t_point *p, int x, int y)
+{
+	p->x = x;
+	p->y = y;
+}
 
 void	ft_passnline(size_t n)
 {
@@ -40,24 +46,15 @@ void	ft_init_map(t_env *env)
 		ft_strdel(&s);
 		y++;
 	}
-
-	// int n = 0;
-	// ft_printf_fd(fd, "Map:\n");
-	// while (env->map[n])
-	// {
-	// 	ft_printf_fd(fd, "%s\n", env->map[n]);
-	// 	n++;
-	// }
 }
 
-int main()
+int		main(void)
 {
 	t_env	env;
 	t_point	pos;
-	int 	phase;
+	int		phase;
 
 	phase = 0;
-	// fd = open("log.txt", O_RDWR);
 	ft_get_mytoken(&env);
 	ft_init_map(&env);
 	while (1)
@@ -68,12 +65,10 @@ int main()
 		pos = ft_find_pos(env, &phase);
 		ft_tabc_del(&(env.token));
 		if (pos.y >= env.mapsize.y || pos.y < 0)
-			break;
+			break ;
 		ft_printf("%d %d\n", pos.y - env.tokendiff.y, pos.x - env.tokendiff.x);
-		// ft_printf_fd(fd, "====================================\n");
 		ft_get_map(&env);
 	}
-	// ft_printf_fd(fd, "\n\n~~~~~END !~~~~~\n");
 	ft_tabc_del(&(env.map));
 	ft_printf("0 0\n");
 	return (0);

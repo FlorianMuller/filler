@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:19:10 by fmuller           #+#    #+#             */
-/*   Updated: 2017/06/14 16:48:16 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/05 17:10:33 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@
 int main()
 {
 	t_env	env;
-	// char	*s;
+	char	*s;
 	// int		fd;
 
 	mknod("coolpipe", S_IFIFO | 0666, 0);
 	env.fd = open("coolpipe", O_RDONLY);
+	ft_printf("HEHEHE\n");
 
 	if (ft_init_ncurses())
 		return (1);
@@ -41,10 +42,13 @@ int main()
 	
 	ft_while(&env);
 	
-	// while (get_next_line(env.fd, &s) == 1)
-	// {
-	// 	ft_strdel(&s);
-	// }
-	ft_end_ncurses(env.fd);
+	ft_end_ncurses();
+	
+	while (get_next_line(env.fd, &s) == 1)
+	{
+		ft_strdel(&s);
+	}
+	close(env.fd);
+	
 	return (0);
 }

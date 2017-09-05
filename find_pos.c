@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:49:08 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/23 19:41:33 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/05 17:51:12 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ int		ft_is_adv(char c, char mytoken)
 		return (c == 'x' || c == 'X');
 	else
 		return (c == 'o' || c == 'O');
-}
-
-void	ft_set_point(t_point *p, int x, int y)
-{
-	p->x = x;
-	p->y = y;
 }
 
 int		ft_check_pos(t_env env, t_point pos)
@@ -45,8 +39,8 @@ int		ft_check_pos(t_env env, t_point pos)
 				return (0);
 			if (env.token[p.y][p.x] == '*'
 				&& env.map[pos.y + p.y][pos.x + p.x] == env.mytoken)
-		 		cross ++;
-		 	p.x++;
+				cross++;
+			p.x++;
 		}
 		ft_set_point(&p, 0, p.y + 1);
 	}
@@ -75,59 +69,12 @@ void	ft_point_minus(t_point *pos, int x_max)
 		pos->x--;
 }
 
-t_point	ft_go_up(t_env env)
-{
-	t_point	obj;
-	t_point	pos;
-	t_point	p;
-	t_point	final_pos;
-	t_point	best_pos;
-	int		dist;
-	int		best_dist;
-	
-	best_dist = -1;
-	ft_set_point(&pos, 0, 0);
-	// ft_set_point(&obj, 14, 0);
-	ft_set_point(&obj, 8, 7);
-	while (env.map[pos.y])
-	{
-		if (ft_check_pos(env, pos))
-		{
-			ft_set_point(&p, 0, 0);
-			while(env.token[p.y])
-			{
-				ft_set_point(&final_pos, pos.x + p.x, pos.y + p.y);
-				dist = ft_dist(final_pos, obj);
-				if (best_dist == -1 || dist < best_dist)
-				{
-					best_dist = dist;
-					best_pos = pos;
-				}
-			ft_point_plus(&p, env.tokensize.x - 1);
-			}
-		}
-		ft_point_plus(&pos, env.mapsize.x - 1);
-	}
-	return (best_pos);
-}
-
 t_point	ft_find_pos(t_env env, int *phase)
 {
 	t_point	pos;
-	/*
-	if (!ft_)
-		*phase = 2;
-	*/
-	if (*phase <= 0 && ft_is_in_contact(env))
-	{
+
+	if (*phase == 0 && ft_is_in_contact(env))
 		*phase = 1;
-		// ft_printf_fd(fd, "\n\n========================\nPHASE II\n========================\n\n");
-	}
-	if (*phase < 0)
-	{
-		pos = ft_go_up(env);
-		(*phase)++;
-	}
 	if (*phase > 0 && *phase < 10)
 	{
 		pos = ft_surround(env);
@@ -135,7 +82,6 @@ t_point	ft_find_pos(t_env env, int *phase)
 		{
 			(*phase)++;
 			pos = ft_get_closer(env);
-			// ft_printf_fd(fd, "\n\n========================\nPHASE I\n========================\n\n");
 		}
 		else
 			*phase = 1;
@@ -144,19 +90,5 @@ t_point	ft_find_pos(t_env env, int *phase)
 		pos = ft_get_closer(env);
 	if (*phase == 10)
 		pos = ft_complete(env);
-	// ft_printf_fd(fd, "POSITION:\n%d %d\n", pos.y, pos.x);
 	return (pos);
 }
-	
-	// if (env.mytoken == 'O')
-	// 	ft_set_point(&pos, env.mapsize.x - 1, env.mapsize.y - 1);
-	// else
-	// 	ft_set_point(&pos, 0, 0);
-	// while (pos.y != env.mapsize.y && pos.y >= 0 && !ft_check_pos(env, pos))
-	// {
-	// 	// ft_printf_fd(fd, "pos.x: %d | pos.y: %d\n", pos.x, pos.y);
-	// 	if (env.mytoken == 'O')
-	// 		ft_point_minus(&pos, env.mapsize.x - 1);
-	// 	else
-	// 		ft_point_plus(&pos, env.mapsize.x - 1);
-	// }
