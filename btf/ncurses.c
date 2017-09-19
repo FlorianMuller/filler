@@ -6,14 +6,13 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 22:20:25 by fmuller           #+#    #+#             */
-/*   Updated: 2017/09/05 15:32:25 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/11 20:07:19 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "backToTheFiller.h"
+#include "back_to_the_filler.h"
 
-
-int		ft_init_ncurses()
+int		ft_init_ncurses(void)
 {
 	initscr();
 	cbreak();
@@ -31,15 +30,13 @@ int		ft_init_ncurses()
 	return (0);
 }
 
-void	ft_init_color()
+void	ft_init_color(void)
 {
-	init_color(COLOR_YELLOW, 1000, 616, 0); 
- 	init_color(COLOR_BLUE, 153, 158, 133);
- 	// init_color(COLOR_GREEN, 1000, 827, 556);
+	init_color(COLOR_YELLOW, 1000, 616, 0);
+	init_color(COLOR_BLUE, 153, 158, 133);
 	init_pair(1, COLOR_YELLOW, COLOR_BLUE);
 	init_pair(2, COLOR_CYAN, COLOR_BLUE);
 	init_pair(3, COLOR_RED, COLOR_BLUE);
-	// init_pair(3, COLOR_GREEN, COLOR_BLUE);
 	init_pair(4, COLOR_MAGENTA, COLOR_BLUE);
 	init_pair(5, COLOR_WHITE, COLOR_BLUE);
 	init_pair(7, COLOR_YELLOW, COLOR_BLACK);
@@ -48,8 +45,7 @@ void	ft_init_color()
 	init_pair(10, COLOR_BLACK, COLOR_BLACK);
 }
 
-
-void	ft_end_ncurses()
+void	ft_end_ncurses(void)
 {
 	curs_set(1);
 	endwin();

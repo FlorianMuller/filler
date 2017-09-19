@@ -1,0 +1,11 @@
+####################
+## SOURCES
+BTF_SRC = main.c init.c map.c input.c ncurses.c print.c print_map.c
+BTF_OBJ = $(BTF_SRC:.c=.o)
+BTF_HEADERS = back_to_the_filler.h $(LIBFT_PATH_HEADERS)
+
+BTF_DIR = btf
+
+####################
+## NAME
+BTF_NAME = btf

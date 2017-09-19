@@ -178,3 +178,27 @@ t_point	ft_go_up(t_env env)
 	}
 	return (best_pos);
 }
+====================================
+vm_reader:
+
+int	main(void)
+{
+	char	*s;
+	int		ret;
+	int		fd;
+
+	mknod("coolpipe", S_IFIFO | 0666, 0);
+	fd = open("coolpipe", O_RDWR);
+	while ((ret = get_next_line(0, &s)) == 1)
+	{
+		// ft_printf("[%s]\n", s);
+		ft_printf_fd(fd, "%s\n", s);
+		ft_strdel(&s);
+	}
+	if (ret == -1)
+	{
+		ft_printf_fd(2, "get_next_line failed\n");
+		return (3);
+	}
+	return (0);
+}

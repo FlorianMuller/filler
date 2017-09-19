@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:11:44 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/22 18:24:33 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/11 18:20:37 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,6 @@ void				ft_tabc_del(char ***tab);
 unsigned long long	ft_sqrt(unsigned long long nb);
 unsigned long long	ft_abs_val(long long nb);
 long long			ft_power(long long nb, size_t power);
+int					*ft_nbcpy(int *tab, int lenght, ...);
+int					*ft_nbdup(int lenght, ...);
 #endif

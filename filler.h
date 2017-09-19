@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 16:36:44 by fmuller           #+#    #+#             */
-/*   Updated: 2017/05/23 19:35:48 by fmuller          ###   ########.fr       */
+/*   Updated: 2017/09/11 19:39:08 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FILLER_H
 
 # include "libft/libft.h"
-#	include <stdio.h>
-#	include <fcntl.h>
 
 typedef struct	s_point
 {
@@ -33,14 +31,11 @@ typedef struct	s_env
 	t_point	tokendiff;
 }				t_env;
 
-// int fd;
-
 void			ft_passnline(size_t n);
 void			ft_set_point(t_point *p, int x, int y);
 void			ft_point_plus(t_point *pos, int x_max);
 void			ft_point_minus(t_point *pos, int x_max);
 int				ft_is_adv(char c, char mytoken);
-
 
 void			ft_get_mytoken(t_env *env);
 void			ft_get_mapsize(t_env *env);

@@ -1,5 +1,8 @@
 *.o
 *.a
 fmuller.filler
-BackToTheFiller/backToTheFiller
+btf/btf
+backToTheFiller
 *filler.trace
+filler_tester
+filler_tester_directory
