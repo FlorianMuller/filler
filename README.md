@@ -1,26 +1,24 @@
 # Filler
 > **Création en C, d'un joueur inteligent pour un jeux de strategie**
 
-*Dans Filler, deux joueurs s’affrontent sur un plateau, et doivent placer, tour à tour, une pièce que le maître du jeu (sous la
-forme d’un exécutable Ruby fourni) leur donne. Le joueur qui place le plus de pièce a gagné.*
+*Dans Filler, deux joueurs s’affrontent sur un plateau et doivent placer, tour à tour, une pièce donnée par un exécutable fourni dans l'énoncé. Le joueur qui place le plus de pièce a gagné.*
 
 ![presentation du jeux](https://media.giphy.com/media/3oFzlUjKcjowSmvqgg/giphy.gif)
-
 
 
 ## Mon joueur
 > *ici en bleu*
 
-Mon joueur a trois mode de fonctionnement:
+Mon joueur a trois modes de fonctionnement:
 * Tout d'abord il se rapproche le plus rapidement possible de l'adversaire
   
   ![phase 1: rapprochement](https://media.giphy.com/media/3ohc195jHIcP3tscqQ/giphy.gif)
 
-* Une fois en contacte avec lui, il tente de l'entourer
+* Une fois en contact avec lui, il tente de l'entourer
  
   ![phase 2: entourer](https://media.giphy.com/media/3ohc1gOOSV7SZfGoYo/giphy.gif)
 
-* Puis il complete le reste du plateau 
+* Puis il complète le reste du plateau 
   
   ![phase 3: remplir](https://media.giphy.com/media/l49JF6J2NKslCvHTW/giphy.gif)
 
@@ -28,10 +26,13 @@ Mon joueur a trois mode de fonctionnement:
 > **partie optionnelle du projet**
 
 J'ai réalisé un visualisateur graphique avec *Ncurses*.
+Il permet de viusaliser le jeu étape par étape, avec la possibilité de revenir en arrière et de changer la vitesse.
 
-// Sans visualisateur vs avec
+![avec visualisateur](https://media.giphy.com/media/l0HU04tvzqyMXx92U/giphy.gif)
 
-Il permet viusaliser le jeux étape par étape, avec la possibilité de revenir en arrière et de changé la vitesse
+*Sans visualisateur:*
+
+![sans visualisateur](https://media.giphy.com/media/xULW8gUuoy1cSizoAw/giphy.gif)
 
 ## Instalation
 
