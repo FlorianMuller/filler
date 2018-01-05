@@ -6,7 +6,7 @@
 /*   By: fmuller <fmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 04:18:18 by fmuller           #+#    #+#             */
-/*   Updated: 2017/09/12 20:50:50 by fmuller          ###   ########.fr       */
+/*   Updated: 2018/01/05 22:35:41 by fmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		ft_end(t_env *env, char *str)
 	ft_strdel(&s);
 	if (score_p1 == score_p2)
 	{
-		init_pair(7, COLOR_YELLOW, COLOR_WHITE);
-		init_pair(8, COLOR_CYAN, COLOR_WHITE);
+		init_pair(7, COLOR_YELLOW, COLOR_BLUE);
+		init_pair(8, COLOR_CYAN, COLOR_BLUE);
 	}
 	else if (score_p1 > score_p2)
 		init_pair(7, COLOR_YELLOW, COLOR_BLUE);

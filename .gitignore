@@ -2,7 +2,6 @@
 *.a
 fmuller.filler
 btf/btf
-backToTheFiller
 *filler.trace
 filler_tester
 filler_tester_directory
