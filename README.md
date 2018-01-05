@@ -4,26 +4,28 @@
 *Dans Filler, deux joueurs s’affrontent sur un plateau, et doivent placer, tour à tour, une pièce que le maître du jeu (sous la
 forme d’un exécutable Ruby fourni) leur donne. Le joueur qui place le plus de pièce a gagné.*
 
-![presentation du jeux](https://media.giphy.com/media/xT1R9X3UP647yiNPO0/giphy.gif)
+![presentation du jeux](https://media.giphy.com/media/3oFzlUjKcjowSmvqgg/giphy.gif)
 
 
 
 ## Mon joueur
+> *ici en bleu*
+
 Mon joueur a trois mode de fonctionnement:
-* Tout d'abord il pose des pieces pour se rapprocher de l'adversaire le plus rapidement possible
-
-  //gif rapprochement
-
-* Une fois au contacte de l'adversaire, il pose les piece les plus en contactes avec lui pour l'entourer
- 
-  //gif entourer
-
-* Une fois l'adversaire entouré, il complete le reste du plateau 
+* Tout d'abord il se rapproche le plus rapidement possible de l'adversaire
   
-  //gif fin
+  ![phase 1: rapprochement](https://media.giphy.com/media/3ohc195jHIcP3tscqQ/giphy.gif)
+
+* Une fois en contacte avec lui, il tente de l'entourer
+ 
+  ![phase 2: entourer](https://media.giphy.com/media/3ohc1gOOSV7SZfGoYo/giphy.gif)
+
+* Puis il complete le reste du plateau 
+  
+  ![phase 3: remplir](https://media.giphy.com/media/l49JF6J2NKslCvHTW/giphy.gif)
 
 ## Mon visualisateur
-> partie optionnelle du projet
+> **partie optionnelle du projet**
 
 J'ai réalisé un visualisateur graphique avec *Ncurses*.
 
@@ -33,3 +35,24 @@ Il permet viusaliser le jeux étape par étape, avec la possibilité de revenir 
 
 ## Instalation
 
+Installez le projet avec cette commande:
+
+```shell
+git clone https://github.com/FlorianMuller/filler.git FillerFmuller && cd FillerFmuller && make
+```
+
+
+Lancez une partie **avec** le visualisateur:
+```shell
+./backToTheFiller -f [map] -p1 ./[first player] -p2 ./[second player]
+```
+*par exemple:*
+```shell
+./backToTheFiller -f maps/map01 -p1 ./players/grati.filler -p2 ./fmuller.filler
+```
+
+
+Lancez une partie **sans** le visualisateur:
+```shell
+./filler_vm -f [map] -p1 ./[first player] -p2 ./[second player]
+```
