@@ -1,10 +1,12 @@
 # Filler
-> Création en C, d'un joueur inteligent pour un jeux de strategie
+> **Création en C, d'un joueur inteligent pour un jeux de strategie**
 
-Dans Filler, deux joueurs s’affrontent sur un plateau, et doivent placer, tour à tour, une pièce que le maître du jeu (sous la
-forme d’un exécutable Ruby fourni) leur donne. Le joueur qui place le plus de pièce a gagné.
+*Dans Filler, deux joueurs s’affrontent sur un plateau, et doivent placer, tour à tour, une pièce que le maître du jeu (sous la
+forme d’un exécutable Ruby fourni) leur donne. Le joueur qui place le plus de pièce a gagné.*
 
-//gif debut de partie
+![presentation du jeux](https://media.giphy.com/media/xT1R9X3UP647yiNPO0/giphy.gif)
+
+
 
 ## Mon joueur
 Mon joueur a trois mode de fonctionnement:
