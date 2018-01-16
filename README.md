@@ -1,7 +1,7 @@
 # Filler
-> **Création en C, d'un joueur inteligent pour un jeux de strategie**
+> **Création en C, d'un joueur intelligent pour un jeu de stratégie**
 
-*Dans Filler, deux joueurs s’affrontent sur un plateau et doivent placer, tour à tour, une pièce donnée par un exécutable fourni dans l'énoncé. Le joueur qui place le plus de pièce a gagné.*
+*Dans Filler, deux joueurs s’affrontent sur un plateau et doivent placer, tour à tour, une pièce donnée par un exécutable fourni dans l'énoncé. Le joueur qui place le plus de pièces a gagné.*
 
 ![presentation du jeux](https://media.giphy.com/media/3oFzlUjKcjowSmvqgg/giphy.gif)
 
@@ -9,8 +9,8 @@
 ## Mon joueur
 > *ici en bleu*
 
-Mon joueur a trois modes de fonctionnement:
-* Tout d'abord il se rapproche le plus rapidement possible de l'adversaire
+Mon joueur a trois modes de fonctionnement :
+* Tout d'abord, il se rapproche le plus rapidement possible de l'adversaire
   
   ![phase 1: rapprochement](https://media.giphy.com/media/3ohc195jHIcP3tscqQ/giphy.gif)
 
@@ -34,26 +34,26 @@ Il permet de viusaliser le jeu étape par étape, avec la possibilité de reveni
 
 ![sans visualisateur](https://media.giphy.com/media/xULW8gUuoy1cSizoAw/giphy.gif)
 
-## Instalation
+## Installation
 
-Installez le projet avec cette commande:
+Installez le projet avec cette commande :
 
 ```shell
 git clone https://github.com/FlorianMuller/filler.git FillerFmuller && cd FillerFmuller && make
 ```
 
 
-Lancez une partie **avec** le visualisateur:
+Lancez une partie **avec** le visualisateur :
 ```shell
 ./backToTheFiller -f [map] -p1 ./[first player] -p2 ./[second player]
 ```
-*par exemple:*
+*par exemple :*
 ```shell
 ./backToTheFiller -f maps/map01 -p1 ./players/grati.filler -p2 ./fmuller.filler
 ```
 
 
-Lancez une partie **sans** le visualisateur:
+Lancez une partie **sans** le visualisateur :
 ```shell
 ./filler_vm -f [map] -p1 ./[first player] -p2 ./[second player]
 ```
